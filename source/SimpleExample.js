@@ -29,9 +29,11 @@ class SimpleExample extends React.Component {
       this.setState({quantityGeoObj: quantityGeoObj + 1});
       return;
     }
+    
+    if (!this.state.quantityGeoObj) return;
 
     this.setState({quantityGeoObj: quantityGeoObj - 1});
-  }
+  };
 
 
   addData = () => {
@@ -40,36 +42,72 @@ class SimpleExample extends React.Component {
     if(!quantityGeoObj) return;
 
     axios.get(`http://itd-121.ru/figuresapi.php?figures=${quantityGeoObj}`).then(({data}) => {
-      this.setState({geoObjects: data});
+      // Так-как решения для смены центра я не нашел
+      // пришлось всегда немого менять центр (Math.random() * 0.00001)
+      // так-как если деать lat: 54.521764, центр меняется только один раз  
+      this.setState({
+        geoObjects: data,
+        lat: 54.521764 + Math.random() * 0.00001,
+        lng: 36.281347 + Math.random() * 0.00001,
+      });
+
+      const geoObjects = JSON.stringify(data);
+
+      localStorage.setItem('geoObjects', geoObjects);
     });
   };
+
+  changeInputValue = (event) => { 
+    let quantityGeoObj = +event.target.value;
+
+    if (typeof(quantityGeoObj) !== 'number' || isNaN(quantityGeoObj)) {
+       return alert('Разрешено вводить только цифры');
+    }
+    
+    quantityGeoObj = Math.round(quantityGeoObj);
+
+    this.setState({quantityGeoObj});
+  };
+
+  componentDidMount() {
+
+    const geoObjects = JSON.parse(localStorage.getItem('geoObjects'));
+    
+    if (typeof(geoObjects) === 'object' && geoObjects) {
+      const quantityGeoObj = geoObjects.length;
+
+      this.setState({geoObjects, quantityGeoObj});
+    }
+  }
 
   render() {
 
     const position = [this.state.lat, this.state.lng];
-    const {quantityGeoObj} = this.state;
+    const {quantityGeoObj,zoom} = this.state;
 
     return (
       <div className='app-wrapper'>
         <div className='modal-window'>
-          кол-во объектов
-          <input readOnly value={quantityGeoObj}/>
+          <p>Количество объектов</p>
+          <input onChange={this.changeInputValue}
+           value={quantityGeoObj}
+           />
         </div>
-        <Map center={position} zoom={this.state.zoom}>
+        <Map center={position} zoom={zoom}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
           <WrappedMarker geoObjects={this.state.geoObjects}/>
           <LegendControl className="supportLegend">
             <div className='button-block'>
-              <button onClick={this.addData}>Обновть карту</button>
-              <button onClick={this.changeQuantityGeoObj('add')}>+</button>
-              <button onClick={this.changeQuantityGeoObj('subtract')}>-</button>
+              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.addData}>↻</button>
+              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.changeQuantityGeoObj('add')}>+</button>
+              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.changeQuantityGeoObj('subtract')}>-</button>
             </div>
           </LegendControl>
           <FeatureGroup>
             <EditControl
-              position='topright'
+              position='topleft'
               draw={{
                 rectangle: false
               }}
