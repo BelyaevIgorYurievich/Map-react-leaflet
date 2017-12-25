@@ -30,7 +30,7 @@ class SimpleExample extends React.Component {
       return;
     }
     
-    if (!this.state.quantityGeoObj) return;
+    if (!quantityGeoObj) return;
 
     this.setState({quantityGeoObj: quantityGeoObj - 1});
   };
@@ -39,7 +39,7 @@ class SimpleExample extends React.Component {
   addData = () => {
     const {quantityGeoObj} = this.state;
     
-    if(!quantityGeoObj) return;
+    if (!quantityGeoObj) return;
 
     axios.get(`http://itd-121.ru/figuresapi.php?figures=${quantityGeoObj}`).then(({data}) => {
       // Так-как решения для смены центра я не нашел
@@ -61,7 +61,7 @@ class SimpleExample extends React.Component {
     let quantityGeoObj = +event.target.value;
 
     if (typeof(quantityGeoObj) !== 'number' || isNaN(quantityGeoObj)) {
-       return alert('Разрешено вводить только цифры');
+       return;
     }
     
     quantityGeoObj = Math.round(quantityGeoObj);

@@ -22,6 +22,3 @@ export default class LegendControl extends MapControl {
     this.leafletElement = legend;
   }
 }
-
-
-
