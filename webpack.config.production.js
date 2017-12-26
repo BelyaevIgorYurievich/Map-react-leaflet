@@ -4,10 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const moment = require('moment');
-
-//определяем время сборки
 const BUILD_DATETIME = moment().format('DD.MM.YYYY HH:mm');
-
 const plugins = [
   new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,
@@ -39,13 +36,13 @@ new HtmlWebpackPlugin({
 ];
 
 module.exports = {
+
   entry: './source/index.js',
 
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'public'),
   },
-
   resolve: {
     alias: {
       Scripts: path.resolve(__dirname, 'src'),
