@@ -43,15 +43,6 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'public'),
   },
-  resolve: {
-    alias: {
-      Scripts: path.resolve(__dirname, 'src'),
-      NPM: path.resolve(__dirname, 'node_modules'),
-      App: path.resolve(__dirname, 'src/App'),
-      Components: path.resolve(__dirname, 'src/App/components'),
-      Utilities: path.resolve(__dirname, 'src/utilities')
-    },
-  },
   module: {
     rules: [
       {
