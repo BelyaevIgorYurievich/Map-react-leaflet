@@ -17,6 +17,7 @@ div {
 
 .app-wrapper {
 	display: flex;
+    position: relative;
 
 	input {
 	    width: 50%;
@@ -56,19 +57,17 @@ div {
 
 .modal-window {
     padding: 5px;
-    background: white;
-    width: auto;
+    background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0,0,0,.2);
     width: 197px;
     position: absolute;
-    z-index: 90290;
+    z-index: 1000;
     top: 10px;
-    left: 88.5%;
-    margin-left: -125px;
+    right: 10px;
 }
 
 .modal-window p {
