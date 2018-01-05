@@ -83,28 +83,29 @@ class SimpleExample extends React.Component {
   render() {
 
     const position = [this.state.lat, this.state.lng];
-    const {quantityGeoObj,zoom} = this.state;
+    const {quantityGeoObj, zoom, geoObjects} = this.state;
 
     return (
       <div className='app-wrapper'>
         <div className='modal-window'>
           <p>Количество объектов</p>
-          <input onChange={this.changeInputValue}
-           value={quantityGeoObj}
-           />
+          <div className="input-group">  
+            <button className="control-bts"   
+              title="Уменьшить количество" 
+              onClick={this.changeQuantityGeoObj('subtract')}>-</button>
+            <input onChange={this.changeInputValue}value={quantityGeoObj}/>
+            <button className="control-bts" 
+              title="Увеличить количество" 
+              onClick={this.changeQuantityGeoObj('add')}>+</button>
+          </div>
+          <button className="control-bts update-bts"
+           onClick={this.addData}>Обновить карту ↻</button> 
         </div>
         <Map center={position} zoom={zoom}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-          <WrappedMarker geoObjects={this.state.geoObjects}/>
-          <LegendControl className="supportLegend">
-            <div className='button-block'>
-              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.addData}>↻</button>
-              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.changeQuantityGeoObj('add')}>+</button>
-              <button className="control-bts" style={{borderBottom:"1px solid #ccc"}} onClick={this.changeQuantityGeoObj('subtract')}>-</button>
-            </div>
-          </LegendControl>
+          <WrappedMarker geoObjects={geoObjects}/>
           <FeatureGroup>
             <EditControl
               position='topleft'

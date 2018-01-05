@@ -24,22 +24,34 @@ div {
 	}
 }
 
-.button-block {
-    width: 32px;
-	display: flex;
-	flex-direction: column;
-    border: 2px solid rgba(0,0,0,0.2);
+.control-bts {
+    border: 0px;
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px #ddd inset, 0 1px 1px #fff;
+    cursor: pointer;
+    margin: 0px 5px;
+}
 
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-	.control-bts {
-	    border-bottom: 1px solid #ccc;
-		background-color: white;
-	    border: 0px;
-	    font-size: 17px;
-	    font-weight: bold;
-	    height: 30px;
-	    cursor: pointer;
-	}
+.update-bts {
+    width: auto;
+    margin: 10px;
+    padding: 0 26px;
 }
 
 .modal-window {
@@ -55,12 +67,12 @@ div {
     position: absolute;
     z-index: 90290;
     top: 10px;
-    left: 50%;
+    left: 88.5%;
     margin-left: -125px;
 }
 
 .modal-window p {
-   padding-bottom: 5px;
+   padding-bottom: 10px;
 }
 
 
@@ -77,9 +89,9 @@ div {
     left: 25%;
 }
 
- .sr-only {
+.sr-only {
     display: none;
-  }
+}
 
 .leaflet-container {
     height: 100vh;
