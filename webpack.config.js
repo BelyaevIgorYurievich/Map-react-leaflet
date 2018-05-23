@@ -8,17 +8,17 @@ const PATHS = {
 }
 
 module.exports = {
-	entry: ['react-hot-loader/patch',
-    // activate HMR for React
-    'webpack-dev-server/client?http://localhost:3000',
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-    'webpack/hot/only-dev-server',
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
-    PATHS.source + '/index.js',
-    // the entry point of our app
+	entry: [
+        'react-hot-loader/patch',
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
+        PATHS.source + '/index.js',
     ],
+    resolve: {
+        alias: {
+          Store: path.resolve(__dirname, 'source/store')
+        },
+    },
 	output: {
 		path: PATHS.build,
 		filename: '[name].js'

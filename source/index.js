@@ -5,7 +5,7 @@ import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
 import App from './App.js';
-import store from './store';
+import store from 'Store';
 
 const rootEl = document.getElementById('root');
 

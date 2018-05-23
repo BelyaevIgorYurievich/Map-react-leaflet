@@ -36,9 +36,12 @@ new HtmlWebpackPlugin({
 ];
 
 module.exports = {
-
   entry: './source/index.js',
-
+  resolve: {
+    alias: {
+      Store: path.resolve(__dirname, 'source/store')
+    },
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'public'),

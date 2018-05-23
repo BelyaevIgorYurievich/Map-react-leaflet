@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import ReactDOM from 'react-dom';
-import './style.less';
 import { TileLayer, Map, MapControl, FeatureGroup } from 'react-leaflet';
+import { EditControl } from 'react-leaflet-draw';
+import axios from 'axios';
+
 import WrappedMarker from './WrappedMarker.js';
 import LegendControl from './LegendControl.js';
-import axios from 'axios';
-import { EditControl } from 'react-leaflet-draw';
+
+import './style.less';
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+  
+  state = {
       lat: 54.521764,
       lng: 36.281347,
       zoom: 10,
       geoObjects: [],
       quantityGeoObj: 0
-    };
   }
 
   changeQuantityGeoObj = (type) => (event) => {
