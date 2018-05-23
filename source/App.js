@@ -8,7 +8,7 @@ import LegendControl from './LegendControl.js';
 import axios from 'axios';
 import { EditControl } from 'react-leaflet-draw';
 
-class SimpleExample extends React.Component {
+export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -119,5 +119,3 @@ class SimpleExample extends React.Component {
     )
   }
 }   
-
-export default SimpleExample;
