@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import ReactDOM from 'react-dom';
-тут реально нужно 
 import './style.less';
 import { Map, Marker, Popup, Circle, Polygon, Polyline,  } from 'react-leaflet';
 
